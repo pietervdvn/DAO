@@ -21,6 +21,8 @@ Terms of usage: patches wich are usefull for everyone should be sent back.
 - tools: all kind of usefull things
 - records: your own records
 - fields: your own field names (as enums)
+- dao: your interfaces
+	- dao.internal: the implementation of these interfaces
 
 ## Internal
 
