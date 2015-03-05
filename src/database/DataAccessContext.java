@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 
+import database.dao.UserDAO;
 import database.internal.Field;
 import database.internal.dao.PictureDAO;
 import database.internal.dao.SimpleDAO;
@@ -36,6 +37,8 @@ public interface DataAccessContext  {
     public SingleFieldFilterExecutor getSingleFieldFilterExecutor();
 
     public List<SimpleDAO<?>> getAllDAOs();
+    
+    public UserDAO getUserDAO();
 
 
     /**
