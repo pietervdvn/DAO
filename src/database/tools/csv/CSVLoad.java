@@ -27,7 +27,7 @@ public class CSVLoad extends CSVRead{
             Listener<RelationStatus>... listeners) throws DataAccessException {
         return load(csv, idField, false, listeners);
     }
-    
+
     @SuppressWarnings("unchecked")
     public int load(String csv, Field idField) throws DataAccessException{
         return load(csv, idField, empty);

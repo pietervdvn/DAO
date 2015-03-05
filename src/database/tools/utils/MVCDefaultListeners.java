@@ -26,7 +26,7 @@ public class MVCDefaultListeners {
     public static class CSVListener implements Listener<RelationStatus> {
 
         public CSVListener(String name) {
-            Logger.out.println("Loading entries into " + name + " from csv");
+            Logger.out.println("Loading entries between " + name + " and csv");
             MVCUtils.tic();
         }
 

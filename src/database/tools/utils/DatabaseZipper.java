@@ -1,9 +1,5 @@
 package database.tools.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -16,7 +12,6 @@ import java.util.zip.ZipOutputStream;
 
 import database.DataAccessException;
 import database.JDBCDataAccessContext;
-import database.JDBCDataAccessProvider;
 import database.internal.Field;
 import database.internal.TableName;
 import database.internal.dao.SimpleDAO;
@@ -60,23 +55,6 @@ public class DatabaseZipper {
         this.dac = dac;
     }
 
-    public static void main(String[] args) throws DataAccessException,
-            FileNotFoundException, IOException {
-        JDBCDataAccessContext dac = new JDBCDataAccessProvider()
-                .getDataAccessContext();
-
-        if (!load) {
-            Logger.out.println("SAVING!");
-            File f = new File("/home/pietervdvn/test.zip");
-            new DatabaseZipper(dac).saveZipTo(new FileOutputStream(f));
-        } else {
-            dac.reset();
-            Logger.out.println("LOADING!");
-            new DatabaseZipper(dac).loadFromZip(new FileInputStream(new File(
-                    "/home/pietervdvn/test.zip")));
-        }
-    }
-
     /* * SAVE TO ZIP * */
 
     /**
@@ -90,6 +68,7 @@ public class DatabaseZipper {
     @SuppressWarnings("unchecked")
     public void saveZipTo(OutputStream out) throws DataAccessException,
             IOException {
+    	Logger.out.println("Creating zip");
         ZipOutputStream zos = new ZipOutputStream(out);
         for (SimpleDAO<?> dao : dac.getAllDAOs()) {
             genCSV(zos, dao, new CSVListener(dao.getTableName()));
@@ -185,6 +164,7 @@ public class DatabaseZipper {
     @SuppressWarnings("unchecked")
     public void loadFromZip(InputStream zip) throws IOException,
             DataAccessException {
+    	Logger.out.println("Loading from zip");
         ZipInputStream zis = new ZipInputStream(zip);
 
         ZipEntry entry;
